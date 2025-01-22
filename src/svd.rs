@@ -299,13 +299,14 @@ impl Mat3 {
         } else {
             let (c, s) = calc_symmetric_givens_coefficients(vtav.m00, vtav.m01, vtav.m11);
 
-            let vtavRot01 = vtav.rot01(c, s);
+            // let vtavRot01 = vtav.rot01(c, s);
 
             self.rot01_post(c, s)
         }
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct Vec3 {
     pub x: f32,
     pub y: f32,

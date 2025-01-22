@@ -1,38 +1,29 @@
-mod qef;
+use std::env;
+
+use octree::Octree;
+use vertex::VertexContainer;
+
+mod octree;
+mod octree_node;
 mod svd;
+mod vertex;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Starting...");
+
+    let args: Vec<String> = env::args().collect();
+    let file_path = &args[1];
+
+    println!("File path: {}", file_path);
+
+    let pcl = VertexContainer::load_ply(file_path);
+
+    let mut octree = Octree::new();
+
+    octree.built_octree_from_vertex_container(&pcl, 0.2);
+
+    println!("Point cloud points: {}", pcl.points.len());
+
+    println!("Otree size: {}", octree.size);
+    println!("Otree Total subdiv: {}", octree.total_subdiv);
 }
-
-type VertexBuffer = Vec<MeshVertex>;
-type IndexBuffer = Vec<u64>;
-
-struct MeshVertex {
-    xyz: svd::Vec3,
-    normal: svd::Vec3,
-}
-
-// impl MeshVertex {
-//     pub fn new(v: glm::Vec3, n: &glm::Vec3) -> MeshVertex {
-//         MeshVertex {
-//             xyz: glm::Vec3::new(v.y, v.x, v.z),
-//             normal: glm::normalize(n),
-//         }
-//     }
-// }
-
-// enum OctreeNodeType {
-//     NodeNone,
-//     NodeInternal,
-//     NodePsuedo,
-//     NodeLeaf,
-// }
-
-// struct OctreeDrawInfo {
-//     index: u32,
-//     corners: u32,
-//     position: glm::Vec3,
-//     average_normal: glm::Vec3,
-//     qef: qef::QefData,
-// }
