@@ -20,7 +20,7 @@ impl NodeParameters {
     }
 }
 
-pub struct Octree {
+pub struct OctreeContainer {
     pub root: OctreeNode,
     pub nodes: Vec<NodeParameters>,
     pub total_subdiv: usize,
@@ -28,7 +28,7 @@ pub struct Octree {
     pub threshold: f32,
 }
 
-impl Octree {
+impl OctreeContainer {
     pub fn new() -> Self {
         Self {
             root: OctreeNode::new_empty(),

@@ -1,9 +1,9 @@
 use std::env;
 
-use octree::Octree;
+use octree_container::OctreeContainer;
 use vertex::VertexContainer;
 
-mod octree;
+mod octree_container;
 mod octree_node;
 mod svd;
 mod vertex;
@@ -18,7 +18,7 @@ fn main() {
 
     let pcl = VertexContainer::load_ply(file_path);
 
-    let mut octree = Octree::new();
+    let mut octree = OctreeContainer::new();
 
     octree.built_octree_from_vertex_container(&pcl, 0.2);
 

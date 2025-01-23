@@ -1,4 +1,4 @@
-use crate::{octree::NodeParameters, svd::Vec3};
+use crate::{octree_container::NodeParameters, svd::Vec3};
 
 const CHILD_COUNT: usize = 8;
 
